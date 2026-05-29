@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سؤال مهم جداً 😉</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe6e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            position: relative;
+            width: 300px;
+            justify-content: center;
+            height: 60px;
+        }
+
+        button {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            z-index: 1;
+        }
+
+        #noBtn {
+            background-color: #777;
+            color: white;
+            position: absolute;
+            left: 160px; /* المكان المبدئي للزرار */
+            transition: all 0.1s ease;
+        }
+
+        .success-message {
+            display: none;
+            color: #ff4d6d;
+            font-size: 2rem;
+            font-weight: bold;
+            animation: pop 0.5s ease;
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="quiz-container">
+        <h1>Would you like to go on a date with me? 🌹</h1>
+        <div class="buttons">
+            <button id="yesBtn" onclick="celebrate()">Yes!</button>
+            <button id="noBtn" onmouseover="flyAway()" onclick="flyAway()">No</button>
+        </div>
+    </div>
+
+    <div id="message" class="success-message">
+        YAYYY! I knew it! 🎉❤️<br>
+        اشوفك قريب بقا 😉
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const quizContainer = document.getElementById('quiz-container');
+        const message = document.getElementById('message');
+
+        function flyAway() {
+            // حساب أبعاد الشاشة المتاحة عشان الزرار ما يخرجش برة الشاشة
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+
+            // توليد إحداثيات عشوائية
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            // نقل الزرار للمكان الجديد فوراً
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+        }
+
+        function celebrate() {
+            // إخفاء السؤال وإظهار رسالة النجاح
+            quizContainer.style.display = 'none';
+            message.style.display = 'block';
+            
+            // إضافة تأثير بسيط للخلفية
+            document.body.style.backgroundColor = '#fff0f5';
+        }
+    </script>
+</body>
+</html>
